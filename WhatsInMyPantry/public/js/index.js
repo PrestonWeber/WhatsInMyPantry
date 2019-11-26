@@ -1,99 +1,196 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(document).ready(function() {
+  var ingredients = [];
+  var addIngredients = "";
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
+  $("#reset-button").on("click", function(e) {
+    e.preventDefault();
+    $("#pantry-div").empty();
+    $("#container-4").empty();
+    ingredients = [];
+    addIngredients = "";
+  });
+
+  $("#submit-button").on("click", function(e) {
+    e.preventDefault();
+    addIngredients = $("#my-food")
+      .val()
+      .trim();
+    addIngredients = addIngredients.replace(/\s+/g, "").toLowerCase();
+    addIngredients = addIngredients.split(",");
+
+    for (i = 0; i < addIngredients.length; i++) {
+      ingredients.push(addIngredients[i]);
+    }
+
+    for (i = 0; i < addIngredients.length; i++) {
+      var newP = $("<p>");
+      newP.text(addIngredients[i]);
+      newP.addClass("food-text-style");
+      $("#pantry-div").append(newP);
+    }
+
+    $("#my-food").val("");
+  });
+
+  $("#submit").on("click", function(event) {
+    addRecipeRow();
+    event.preventDefault();
+    $("#container-4").empty();
+    edamamApi();
+    recipePuppyApi();
+  });
+
+  $("#reset-button").on("click", function(e) {
+    e.preventDefault();
+    $("#pantry-div").empty();
+    $("#container-4").empty();
+    ingredients = [];
+    addIngredients = "";
+  });
+
+  function edamamApi() {
+    var appKey = "c31de725535780190b9ff532d8eb8706";
+    var appId = "d0ac8702";
+
+    var ingredientString = ingredients.join(" ");
+
+    var queryURL =
+      "https://api.edamam.com/search?q=" +
+      ingredientString +
+      "&app_id=" +
+      appId +
+      "&app_key=" +
+      appKey;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+
+      for (i = 0; i < response.hits.length; i++) {
+        var recipeName = response.hits[i].recipe.label;
+        var recipeImage = response.hits[i].recipe.image;
+        var recipeCals = response.hits[i].recipe.calories;
+        recipeCals = Math.floor(recipeCals);
+        var recipeURL = response.hits[i].recipe.url;
+        var recipeIngredients = response.hits[i].recipe.ingredientLines;
+        addRecipeRow(
+          recipeName,
+          recipeImage,
+          recipeURL,
+          recipeCals,
+          recipeIngredients
+        );
+      }
+    });
+  }
+  function recipePuppyApi() {
+    console.log(ingredients);
+    var ingredientString = ingredients.join(",");
+    var queryURL =
+      "https://recipe-puppy.p.rapidapi.com/?p=1&i=" + ingredientString;
+    var settings = {
+      async: true,
+      crossDomain: true,
+      url: queryURL,
+      method: "GET",
       headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
+        "x-rapidapi-host": "recipe-puppy.p.rapidapi.com",
+        "x-rapidapi-key": "e9f470e923msh1d7aabd0ff0db38p18efc3jsnc8efd1593048"
+      }
+    };
+    $.ajax(settings).done(function(response) {
+      var json = JSON.parse(response);
+      console.log(json);
+
+      for (i = 0; i < json.results.length; i++) {
+        var recipeName = json.results[i].title;
+        var recipeImage = json.results[i].thumbnail;
+        var recipeURL = json.results[i].href;
+        var recipeCals = "No information available";
+        var recipeIngredients = json.results[i].ingredients.split(", ");
+        addRecipeRow(
+          recipeName,
+          recipeImage,
+          recipeURL,
+          recipeCals,
+          recipeIngredients
+        );
+      }
     });
   }
-};
+  function addRecipeRow(
+    recipeName,
+    recipeImage,
+    recipeURL,
+    recipeCals,
+    recipeIngredients
+  ) {
+    varnewDiv = $("<div>");
+    newDiv.addClass("card");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+    var newImg = $("<img>");
+    newImg.attr("src", recipeImage);
+    newImg.attr("height", "400px");
+    newImg.attr("width", "400px");
+    newDiv.append(newImg);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+    var cardTitle = $("<h5>");
+    cardTitle.addClass("card-title");
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+    var cardLink = $("<a>");
+    cardLink.attr("href", recipeURL);
+    cardLink.text(recipeName);
 
-      $li.append($button);
+    cardTitle.append(cardLink);
+    newDiv.append(cardTitle);
 
-      return $li;
-    });
+    var colOne = $("<div>");
+    colOne.addClass("col-lg-6");
+    colOne.addClass("col-sm-12");
+    colOne.addClass("green");
+    colOne.append("<h3>You have:</h3>");
 
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
+    var colTwo = $("<div>");
+    colTwo.addClass("col-lg-6");
+    colTwo.addClass("col-sm-12");
+    colTwo.addClass("red");
+    colTwo.append("<h3>You need:</h3>");
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+    var cardBody = $("<div>");
+    cardBody.addClass("card-body");
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+    var newRow = $("<div>");
+    newRow.addClass("row");
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+    var colOne = $("<div>");
+    colOne.addClass("col-md-6");
+    colOne.addClass("green");
+
+    var colTwo = $("<div>");
+    colTwo.addClass("col-md-6");
+    colTwo.addClass("red");
+
+    for (k = 0; k < ingredients.length; k++) {
+      colOne.append("<p>" + ingredients[k] + "</p>");
+    }
+
+    var ingredientsNeeded = _.difference(recipeIngredients, ingredients);
+    console.log(ingredientsNeeded);
+    for (j = 0; j < ingredientsNeeded.length; j++) {
+      colTwo.append("<p>" + ingredientsNeeded[j] + "</p>");
+    }
+
+    newRow.append(colOne);
+    newRow.append(colTwo);
+
+    cardBody.append(newRow);
+
+    cardBody.append("<p>Calories: " + recipeCals + "</p>");
+
+    newDiv.append(cardBody);
+
+    $("#container-4").appendnewDiv;
   }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+});
