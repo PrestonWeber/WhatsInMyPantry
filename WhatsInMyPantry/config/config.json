@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "teamarie",
-    "database": "exampledb",
+    "database": "pantry_db",
     "host": "localhost",
     "dialect": "mysql"
   },
