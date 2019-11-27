@@ -3,5 +3,15 @@ module.exports = function(sequelize, DataTypes) {
     text: DataTypes.STRING,
     portions: DataTypes.TEXT
   });
+
+  // var Recipes = sequelize.define("Recipes", {
+  //   title: DataTypes.STRING,
+  //   link: DataTypes.STRING
+  // });
+
+  // var User = sequelize.define("User", {
+  //   name: DataTypes.STRING
+  // });
+
   return Pantry;
 };
