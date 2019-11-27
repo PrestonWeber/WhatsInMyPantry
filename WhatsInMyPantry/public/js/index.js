@@ -127,7 +127,7 @@ $(document).ready(function() {
     recipeCals,
     recipeIngredients
   ) {
-    varnewDiv = $("<div>");
+    var newDiv = $("<div>");
     newDiv.addClass("card");
 
     var newImg = $("<img>");
@@ -191,6 +191,6 @@ $(document).ready(function() {
 
     newDiv.append(cardBody);
 
-    $("#container-4").appendnewDiv;
+    $("#container-4").append(newDiv);
   }
 });
