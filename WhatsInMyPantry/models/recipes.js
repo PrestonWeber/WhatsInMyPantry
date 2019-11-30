@@ -3,5 +3,14 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     link: DataTypes.STRING
   });
+
+
+  Recipes.associate = function(models) {
+    Recipes.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Recipes;
 };
