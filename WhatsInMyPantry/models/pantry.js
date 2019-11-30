@@ -3,5 +3,13 @@ module.exports = function(sequelize, DataTypes) {
     text: DataTypes.STRING,
     portions: DataTypes.TEXT
   });
+
+  Pantry.associate = function(models) {
+    Pantry.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Pantry;
 };
