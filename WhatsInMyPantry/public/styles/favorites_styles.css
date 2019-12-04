@@ -1,11 +1,15 @@
-
+body {
+  background-color: #4ABDAC;
+}
 .jumbotron {
-    background-image: url("./soup.jpg");
+    background-image: url(../images/soup.jpg); 
+    margin-bottom: 0; 
 }
 
 .header {
-    padding: 10%; 
+  padding: 10%; 
 }
+
 h1, h2 {
     font-family: 'Mansalva', cursive;
     color: #F7C331; 
@@ -21,12 +25,12 @@ p, h3, h4 {
     float: left;
     width: 25%;
     padding-left: 5px;
+    background-color: #4ABDAC; 
     
   }
-  .rowOne {
-       
-      margin-left: 5px; 
-      margin-right: 9px; 
+  .row {
+      background-color: #4ABDAC; 
+      padding: 20px; 
   }
      
   
@@ -37,9 +41,9 @@ p, h3, h4 {
     clear: both;
   }
   
-  /* Style the counter cards */
+  /* Style the recipe cards. */
   .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
     padding: 16px;
     text-align: center;
     background-color: white;
