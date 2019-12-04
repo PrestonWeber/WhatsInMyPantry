@@ -32,7 +32,7 @@ $(document).ready(function() {
     $("#my-food").val("");
   });
 
-  $("#submit").on("click", function(event) {
+  $("#generate").on("click", function(event) {
     addRecipeRow();
     event.preventDefault();
     $("#container-4").empty();

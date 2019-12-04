@@ -1,23 +1,34 @@
+body {
+  background-color: rgb(53, 53, 53); 
+}
+
 .jumbotron {
   background-color: #4ABDAC;
-  
 }
+
 #container-1,
 #container-2 {
   text-align: center; 
   width: 100%;
 }
+#container-2, 
+#row-one, 
+#how-it-works, 
+.col-md-4{
+   background-color: rgb(53, 53, 53); 
+   color: white; 
+}
+.col-md-4 {
+  margin-bottom: 10px; 
+}
+
 
 .row-one {
-  
   text-align: center;
   padding: 40px; 
-  
 }
-.row {
-   background-color: white; 
-   margin-bottom: 20px;
-}
+
+
 h2 {
   padding-top: 20px;
   padding-left: 30px;
@@ -36,7 +47,6 @@ p, h2 {
   font-size: 16px; 
   padding-left: 30px; 
   padding-right: 30px; 
-  
 }
 
 i {
@@ -50,6 +60,7 @@ a {
   text-align: center;
   font-size: 16px;
   font-family: 'Roboto Condensed', sans-serif;
+  
 }
 a:hover {
   background-color: #FC4A1A;
@@ -85,6 +96,24 @@ a:hover {
     background-color: #F7882F;
 }
 
+#generate {
+  background-color:#F7C331; 
+  border: none; 
+  color: white; 
+  padding: 15px 25px; 
+  text-align: center; 
+  font-size: 16px; 
+  font-family: 'Roboto Condensed', sans-serif; 
+  position: absolute;
+  right: 42%;
+  bottom: 0;  
+  margin-bottom: 20px; 
+}
+
+#generate:hover {
+  background-color: #FC4A1A; 
+}
+
 #container-3 {
   /* background-color: #4ABDAC; */
   margin-top: 60px;
@@ -113,7 +142,7 @@ form {
   padding: 20%;
 }
 .column-2{
-    background-image: url("../images/pantry.jpg");
+    background-color:#F7C331;
     min-height: 600px;
     height: auto;
     text-align: left;
@@ -123,19 +152,11 @@ form {
     
 }
 .food-text-style {
-    color: white; 
+    color: #FC4A1A; 
     font-family: 'Mansalva', cursive;
     font-size: 24px; 
 }
 
-
-.submitButton {
-    position: absolute;
-    right: 42%;
-    bottom: 0;  
-    margin-bottom: 10px;
-    text-align: center; 
-}
 
 .card-title {
     margin-top: 20px;
@@ -147,11 +168,11 @@ form {
     margin: 10px;
     border: 1px solid black;
     margin-top: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
     padding-left: 200px;
     padding-right: 200px;
-    background-image: url("../images/kitchentips.jpg");
-    
+    background-image: url("../images/kitchentips.jpg");     
 }
 img {
     margin-left: 270px;
@@ -164,18 +185,17 @@ img {
     border-radius: 20px;
     background-color: white;
     margin-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+
 }
 .red {
-  border: 3px solid red;
+  border: 3px solid #FC4A1A;
   
 }
 .green {
-  border: 3px solid green;
+  border: 3px solid #4ABDAC;
 }
 
-html {
-    background-color: none;
-}
 
 
 
@@ -193,9 +213,10 @@ html {
 }
 
 #pantry-div {
-  background-image: url("../images/pantry.jpg");
+  background-image: url("../images/marblecounter.jpg");
    height: 100%; 
    width: 100%; 
    padding: 10px; 
    text-align: center; 
 }
+
