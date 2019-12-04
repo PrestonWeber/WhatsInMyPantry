@@ -6,8 +6,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      primaryKey: true,
       validate: {
-        isEmail: true
+        isEmail: true,
+        primaryKey: true
       }
     },
 
@@ -18,12 +20,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   User.associate = function(models) {
-    User.hasMany(models.pantry, {
+    User.hasMany(models.Pantry, {
       onDelete: "cascade"
     });
 
     User.Associate = function(models) {
-      User.hasMany(models.recipes, {
+      User.hasMany(models.Recipes, {
         onDelete: "cascade"
       });
     };
