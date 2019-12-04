@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      primaryKey: true,
       validate: {
         isEmail: true,
         primaryKey: true
