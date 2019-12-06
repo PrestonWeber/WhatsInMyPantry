@@ -11,10 +11,12 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/api/recipes", function(req, res) {
-    db.Recipes.findAll({}).then(function(dbRecipes) {
+  app.get("/recipes/all", function(req, res) {
+    console.log("hit");
+    db.Recipes.findAll().then(function(dbRecipes) {
+      console.log(dbRecipes);
       res.render("recipes", {
+        msg: "Welcome!",
         recipes: dbRecipes
       });
     });
