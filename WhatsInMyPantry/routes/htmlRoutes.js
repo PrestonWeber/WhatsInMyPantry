@@ -22,6 +22,24 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/login", function(req, res) {
+    db.Recipes.findAll({}).then(function(dbRecipes) {
+      res.render("login", {
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
+      });
+    });
+  });
+
+  app.get("/signup", function(req, res) {
+    db.Recipes.findAll({}).then(function(dbRecipes) {
+      res.render("signup", {
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
+      });
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
