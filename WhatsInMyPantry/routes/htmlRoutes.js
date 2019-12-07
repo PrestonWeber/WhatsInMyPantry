@@ -6,16 +6,18 @@ module.exports = function(app) {
     db.Pantry.findAll({}).then(function(dbPantry) {
       res.render("index", {
         msg: "Welcome!",
-        pantry: dbPantry
+        pantry: dbPantry,
+        styles: "styles.css"
       });
     });
   });
 
   // Load example page and pass in an example by id
-  app.get("/api/recipes", function(req, res) {
+  app.get("/recipes", function(req, res) {
     db.Recipes.findAll({}).then(function(dbRecipes) {
       res.render("recipes", {
-        recipes: dbRecipes
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
       });
     });
   });
