@@ -2,22 +2,40 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Load index page
-  app.get("/", function(req, res) {
+  app.get("/members", function(req, res) {
     db.Pantry.findAll({}).then(function(dbPantry) {
       res.render("index", {
         msg: "Welcome!",
-        pantry: dbPantry
+        pantry: dbPantry,
+        styles: "styles.css"
       });
     });
   });
 
-  app.get("/recipes/all", function(req, res) {
-    console.log("hit");
-    db.Recipes.findAll().then(function(dbRecipes) {
-      console.log(dbRecipes);
+  // Load example page and pass in an example by id
+  app.get("/recipes", function(req, res) {
+    db.Recipes.findAll({}).then(function(dbRecipes) {
       res.render("recipes", {
-        msg: "Welcome!",
-        recipes: dbRecipes
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
+      });
+    });
+  });
+
+  app.get("/login", function(req, res) {
+    db.Recipes.findAll({}).then(function(dbRecipes) {
+      res.render("login", {
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
+      });
+    });
+  });
+
+  app.get("/", function(req, res) {
+    db.Recipes.findAll({}).then(function(dbRecipes) {
+      res.render("signup", {
+        recipes: dbRecipes,
+        styles: "favorites_styles.css"
       });
     });
   });
