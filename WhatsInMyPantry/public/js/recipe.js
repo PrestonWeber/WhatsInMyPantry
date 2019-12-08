@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  console.log("bitchass");
+  console.log("something");
   var recipes = [];
 
   function favoriteFunction() {
