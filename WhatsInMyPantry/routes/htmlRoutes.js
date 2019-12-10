@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Load index page
-  app.get("/", function(req, res) {
+  app.get("/members", function(req, res) {
     db.Pantry.findAll({}).then(function(dbPantry) {
       res.render("index", {
         msg: "Welcome!",
@@ -31,7 +31,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/signup", function(req, res) {
+  app.get("/", function(req, res) {
     db.Recipes.findAll({}).then(function(dbRecipes) {
       res.render("signup", {
         recipes: dbRecipes,

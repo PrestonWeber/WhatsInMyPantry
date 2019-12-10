@@ -7,8 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
-        primaryKey: true
+        isEmail: true
       }
     },
 
@@ -31,10 +30,13 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   User.prototype.validPassword = function(password) {
+    console.log(password);
+    console.log(this.password);
     return bcrypt.compareSync(password, this.password);
   };
 
   User.addHook("beforeCreate", function(user) {
+    console.log(user);
     user.password = bcrypt.hashSync(
       user.password,
       bcrypt.genSaltSync(10),

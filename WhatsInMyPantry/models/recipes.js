@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes) {
     link: DataTypes.STRING
   });
 
-
   Recipes.associate = function(models) {
     Recipes.belongsTo(models.User, {
       foreignKey: {
