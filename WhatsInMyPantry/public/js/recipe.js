@@ -1,12 +1,9 @@
-$(document).ready(function() {
-  console.log("something");
-  var recipes = [];
+// var favoriteRecipes = {
+//   title: $(".card-title")
+// };
 
-  function favoriteFunction() {
-    var element = $(".card");
-    element.classList.toggle("favorite");
-  }
-  $(".recipe").on("click", function() {
-    favoriteFunction();
-  });
-});
+// $("#favorite").on("click", function() {
+//   $.post("/api/recipes", favoriteRecipes).then(function(data) {
+//     console.log(data);
+//   });
+// });
