@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "2Acidpops?",
+    "password": "teamarie",
     "database": "pantry_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "2Acidpops?",
+    "password": "teamarie",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
@@ -18,7 +18,7 @@
     "username": "so2l4nyctuxatq3n",
     "password": "z4akkxpv3jshvesc",
     "database": "dqnqoks3eogv7lzq",
-    "host": "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    
+    "host": "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+
   }
 }
