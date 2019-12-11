@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "teamarie",
+    "password": "2Acidpops?",
     "database": "pantry_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "teamarie",
+    "password": "2Acidpops?",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
