@@ -194,6 +194,10 @@ $(document).ready(function() {
     $(favoriteButton).attr("id", "favorite");
     $(favoriteButton).attr("onclick", "recipeFavorite()");
 
+    // var recipeFavorite = function() {
+
+    // }
+
     for (k = 0; k < ingredients.length; k++) {
       colOne.append("<p>" + ingredients[k] + "</p>");
     }
