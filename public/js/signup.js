@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // Getting references to our form and input
-  var signUpForm = $("form.signup");
+  var signUpForm = $("#signup-submit");
   var emailInput = $("#email-input");
   var passwordInput = $("#password-input");
 
@@ -13,6 +13,7 @@ $(document).ready(function() {
     };
 
     if (!userData.email || !userData.password) {
+      EnterLoginCredentials();
       return;
     }
     // If we have an email and password, run the signUpUser function
@@ -38,5 +39,9 @@ $(document).ready(function() {
   function handleLoginErr(err) {
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
+  }
+
+  function EnterLoginCredentials() {
+    alert("Enter login credentials");
   }
 });

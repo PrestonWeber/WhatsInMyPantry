@@ -1,6 +1,24 @@
 $(document).ready(function() {
   var ingredients = [];
   var addIngredients = "";
+  // var url = window.location.search;
+  // var userId;
+
+  // function getPantry(user) {
+  //   userId = user || "";
+  //   if (userId) {
+  //     userId = "/?user_id" + userId;
+  //   }
+  //   $.get("/api/pantry", + userId, function(data) {
+  //     console.log("Pantry", data);
+  //     ingredients = data;
+  //     initializePantry(ingredients);
+  //   });
+  // }
+
+  // function initializePantry(ingredients) {
+
+  // }
 
   $("#reset-button").on("click", function(e) {
     e.preventDefault();
