@@ -190,6 +190,14 @@ $(document).ready(function() {
     colTwo.addClass("col-md-6");
     colTwo.addClass("red");
 
+    var favoriteButton = $("<button>Favorite</button>");
+    $(favoriteButton).attr("id", "favorite");
+    $(favoriteButton).attr("onclick", "recipeFavorite()");
+
+    // var recipeFavorite = function() {
+
+    // }
+
     for (k = 0; k < ingredients.length; k++) {
       colOne.append("<p>" + ingredients[k] + "</p>");
     }
@@ -207,8 +215,18 @@ $(document).ready(function() {
 
     cardBody.append("<p>Calories: " + recipeCals + "</p>");
 
+    cardBody.append(favoriteButton);
+
     newDiv.append(cardBody);
 
     $("#container-4").append(newDiv);
   }
+  var favoriteRecipes = {
+    title: $(".card-title").val()
+  };
+  var recipeFavorite = function() {
+    $.post("/api/recipes", favoriteRecipes).then(function(data) {
+      console.log(data);
+    });
+  };
 });
