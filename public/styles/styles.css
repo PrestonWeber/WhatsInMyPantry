@@ -198,8 +198,11 @@ form {
     padding-right: 200px;
     background-image: url("../images/kitchentips.jpg");     
 }
+.recipeImage {
+  position: relative;
+}
 img {
-    margin-left: 270px;
+    
     border: 2px solid black;
     border-radius: 10px;
     margin-top: 20px;
