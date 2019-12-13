@@ -29,70 +29,21 @@ passport.use(
 );
 
 module.exports = function(app) {
-  // Get all examples
   app.get("/api/recipes", function(req, res) {
-    db.Recipes.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+    db.Recipes.findAll({}).then(function(dbRecipes) {
+      res.json(dbRecipes);
     });
   });
 
-  // Create a new example
-  app.post("/api/recipes", function(req, res) {
-    db.Recipes.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.post("api/favRecipes", function(req, res) {
+    db.Recipes.create(req.body).then(function(dbRecipe) {
+      res.json(dbRecipe);
     });
   });
 
-  // Delete an example by id
   app.delete("/api/recipes/:id", function(req, res) {
-    db.Recipes.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
-
-  app.get("/api/ingredients", function(req, res) {
-    db.Pantries.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
-  // Create a new example
-  app.post("/api/ingredients", function(req, res) {
-    db.Pantries.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/ingredients/:id", function(req, res) {
-    db.Pantries.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
-
-  app.get("/api/users", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
-  // Create a new example
-  app.post("/api/users", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/users/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+    db.Recipes.destroy({ where: { id: req.params.id } }).then(function(dbRecipes) {
+      res.json(dbRecipes);
     });
   });
 
