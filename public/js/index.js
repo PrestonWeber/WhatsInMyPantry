@@ -148,11 +148,15 @@ $(document).ready(function() {
     var newDiv = $("<div>");
     newDiv.addClass("card");
 
+    var imgDiv = $("<div>");
+    imgDiv.addClass("recipeImage");
+    newDiv.append(imgDiv);
+
     var newImg = $("<img>");
     newImg.attr("src", recipeImage);
-    newImg.attr("height", "400px");
-    newImg.attr("width", "400px");
-    newDiv.append(newImg);
+    newImg.attr("height", "50%");
+    newImg.attr("width", "50%");
+    imgDiv.append(newImg);
 
     var cardTitle = $("<h5>");
     cardTitle.addClass("card-title");
