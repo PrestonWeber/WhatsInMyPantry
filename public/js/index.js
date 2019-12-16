@@ -198,14 +198,15 @@ $(document).ready(function() {
     var favoriteButton = $("<button>Favorite</button>");
     $(favoriteButton).attr("class", "favorite");
     var string = "";
-    $(".favorite").on("click", function() {
-      // var recipeData = $("a.recipeImage");
-      // console.log(recipeData);
+    $(".favorite").on("click", function(event) {
       string = $(this)
         .parent()
         .siblings($(this).val())[1];
       console.log(string);
+      console.log(event.target);
+      return false;
     });
+
     function recipeFavorite(recipe) {
       $.post("/api/favRecipes", recipe, function() {
         console.log(req.body);
