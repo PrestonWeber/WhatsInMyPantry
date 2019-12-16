@@ -1,11 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Recipes = sequelize.define("Recipes", {
-    title: DataTypes.STRING,
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    }
+    title: DataTypes.STRING
   });
 
   Recipes.associate = function(models) {
