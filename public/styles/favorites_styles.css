@@ -48,6 +48,11 @@ p, h3, h4 {
     text-align: center;
     background-color: white;
   }
+  .savedRecipes {
+    background-color: #F7C331;
+  }
+
+  
   
   #signup-submit,
   #login-submit {
