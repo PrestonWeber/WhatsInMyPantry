@@ -198,20 +198,20 @@ $(document).ready(function() {
     var favoriteButton = $("<button>Favorite</button>");
     $(favoriteButton).attr("class", "favorite");
     var string = "";
-    $(".favorite").on("click", function(event) {
-      string = $(this)
-        .parent()
-        .siblings($(this).val())[1];
-      console.log(string);
-      console.log(event.target);
-      return false;
-    });
 
-    function recipeFavorite(recipe) {
-      $.post("/api/favRecipes", recipe, function() {
-        console.log(req.body);
+    $(favoriteButton).on("click", function(e) {
+      var target = e.target.parentNode.parentNode.children[1].children[0];
+      e.target.style.color = "yellow";
+      // console.log(target);
+      string = {
+        title: "" + target
+      };
+      console.log(string);
+
+      $.post("/api/favRecipes", string, function() {
+        console.log("done");
       });
-    }
+    });
 
     for (k = 0; k < ingredients.length; k++) {
       colOne.append("<p>" + ingredients[k] + "</p>");
