@@ -47,7 +47,13 @@ p, h3, h4 {
     padding: 16px;
     text-align: center;
     background-color: white;
+    margin-bottom: 20px;
   }
+  .savedRecipes {
+    background-color: #F7C331;
+  }
+
+  
   
   #signup-submit,
   #login-submit {
