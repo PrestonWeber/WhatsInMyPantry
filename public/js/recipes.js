@@ -15,6 +15,8 @@ $(document).ready(function() {
 
         var delBtn = $("<button>");
         delBtn.attr("class", "delRecipe");
+        delBtn.attr("class", "btn btn-danger");
+        delBtn.text("Delete");
 
         var link = $("<a>");
         link.attr("href", recipes);
