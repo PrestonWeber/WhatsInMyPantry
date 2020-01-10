@@ -148,11 +148,15 @@ $(document).ready(function() {
     var newDiv = $("<div>");
     newDiv.addClass("card");
 
+    var imgDiv = $("<div>");
+    imgDiv.addClass("recipeImage");
+    newDiv.append(imgDiv);
+
     var newImg = $("<img>");
     newImg.attr("src", recipeImage);
-    newImg.attr("height", "400px");
-    newImg.attr("width", "400px");
-    newDiv.append(newImg);
+    newImg.attr("height", "50%");
+    newImg.attr("width", "50%");
+    imgDiv.append(newImg);
 
     var cardTitle = $("<h5>");
     cardTitle.addClass("card-title");
@@ -160,6 +164,7 @@ $(document).ready(function() {
     var cardLink = $("<a>");
     cardLink.attr("href", recipeURL);
     cardLink.text(recipeName);
+    cardLink.attr("class", "recipeImage")
 
     cardTitle.append(cardLink);
     newDiv.append(cardTitle);
@@ -191,12 +196,22 @@ $(document).ready(function() {
     colTwo.addClass("red");
 
     var favoriteButton = $("<button>Favorite</button>");
-    $(favoriteButton).attr("id", "favorite");
-    $(favoriteButton).attr("onclick", "recipeFavorite()");
+    $(favoriteButton).attr("class", "favorite");
+    var string = "";
 
-    // var recipeFavorite = function() {
+    $(favoriteButton).on("click", function(e) {
+      var target = e.target.parentNode.parentNode.children[1].children[0];
+      e.target.style.color = "yellow";
 
-    // }
+      string = {
+        title: "" + target
+      };
+      console.log(string);
+
+      $.post("/api/favRecipes", string, function() {
+        console.log("done");
+      });
+    });
 
     for (k = 0; k < ingredients.length; k++) {
       colOne.append("<p>" + ingredients[k] + "</p>");
@@ -221,12 +236,4 @@ $(document).ready(function() {
 
     $("#container-4").append(newDiv);
   }
-  var favoriteRecipes = {
-    title: $(".card-title").val()
-  };
-  var recipeFavorite = function() {
-    $.post("/api/recipes", favoriteRecipes).then(function(data) {
-      console.log(data);
-    });
-  };
 });
