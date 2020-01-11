@@ -53,6 +53,13 @@ p, h3, h4 {
     background-color: #F7C331;
   }
 
+  .delRecipe {
+    width: 25%;
+    height: 25px;
+    position: relative;
+    left: 35%;
+    padding: 0px;
+  }
   
   
   #signup-submit,

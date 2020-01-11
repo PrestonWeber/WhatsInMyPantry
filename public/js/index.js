@@ -202,7 +202,7 @@ $(document).ready(function() {
     $(favoriteButton).on("click", function(e) {
       var target = e.target.parentNode.parentNode.children[1].children[0];
       e.target.style.color = "yellow";
-      // console.log(target);
+
       string = {
         title: "" + target
       };
