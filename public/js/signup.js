@@ -8,11 +8,11 @@ $(document).ready(function() {
   signUpForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
-      email: emailInput.val().trim(),
+      username: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.username || !userData.password) {
       EnterLoginCredentials();
     } else {
       $.post("/api/signup", userData, function() {
