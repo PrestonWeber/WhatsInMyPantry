@@ -1,6 +1,24 @@
 $(document).ready(function() {
   var ingredients = [];
   var addIngredients = "";
+  // var url = window.location.search;
+  // var userId;
+
+  // function getPantry(user) {
+  //   userId = user || "";
+  //   if (userId) {
+  //     userId = "/?user_id" + userId;
+  //   }
+  //   $.get("/api/pantry", + userId, function(data) {
+  //     console.log("Pantry", data);
+  //     ingredients = data;
+  //     initializePantry(ingredients);
+  //   });
+  // }
+
+  // function initializePantry(ingredients) {
+
+  // }
 
   $("#reset-button").on("click", function(e) {
     e.preventDefault();
@@ -130,11 +148,15 @@ $(document).ready(function() {
     var newDiv = $("<div>");
     newDiv.addClass("card");
 
+    var imgDiv = $("<div>");
+    imgDiv.addClass("recipeImage");
+    newDiv.append(imgDiv);
+
     var newImg = $("<img>");
     newImg.attr("src", recipeImage);
-    newImg.attr("height", "400px");
-    newImg.attr("width", "400px");
-    newDiv.append(newImg);
+    newImg.attr("height", "50%");
+    newImg.attr("width", "50%");
+    imgDiv.append(newImg);
 
     var cardTitle = $("<h5>");
     cardTitle.addClass("card-title");
@@ -142,6 +164,7 @@ $(document).ready(function() {
     var cardLink = $("<a>");
     cardLink.attr("href", recipeURL);
     cardLink.text(recipeName);
+    cardLink.attr("class", "recipeImage")
 
     cardTitle.append(cardLink);
     newDiv.append(cardTitle);
@@ -172,6 +195,24 @@ $(document).ready(function() {
     colTwo.addClass("col-md-6");
     colTwo.addClass("red");
 
+    var favoriteButton = $("<button>Favorite</button>");
+    $(favoriteButton).attr("class", "favorite");
+    var string = "";
+
+    $(favoriteButton).on("click", function(e) {
+      var target = e.target.parentNode.parentNode.children[1].children[0];
+      e.target.style.color = "yellow";
+
+      string = {
+        title: "" + target
+      };
+      console.log(string);
+
+      $.post("/api/favRecipes", string, function() {
+        console.log("done");
+      });
+    });
+
     for (k = 0; k < ingredients.length; k++) {
       colOne.append("<p>" + ingredients[k] + "</p>");
     }
@@ -188,6 +229,8 @@ $(document).ready(function() {
     cardBody.append(newRow);
 
     cardBody.append("<p>Calories: " + recipeCals + "</p>");
+
+    cardBody.append(favoriteButton);
 
     newDiv.append(cardBody);
 
