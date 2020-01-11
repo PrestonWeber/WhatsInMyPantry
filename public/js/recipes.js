@@ -14,8 +14,7 @@ $(document).ready(function() {
         button.addClass("savedRecipes");
 
         var delBtn = $("<button>");
-        delBtn.attr("class", "delRecipe");
-        delBtn.attr("class", "btn btn-danger");
+        delBtn.attr("class", "btn btn-danger delRecipe");
         delBtn.text("Delete");
 
         var link = $("<a>");
